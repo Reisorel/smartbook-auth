@@ -1,0 +1,68 @@
+# Environnement
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# Dépendances
+node_modules/
+.npm
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+
+# MongoDB Memory Server
+.cache/
+**/mongodb-memory-server/
+
+# Fichiers de compilation et de build
+/dist/
+/build/
+/lib/
+/out/
+*.tsbuildinfo
+
+# Fichiers de couverture et de tests
+/coverage/
+/.nyc_output/
+test-report.xml
+junit.xml
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Éditeurs et IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+.project
+.classpath
+.settings/
+*.sublime-workspace
+*.sublime-project
+
+# Fichiers système
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Fichiers temporaires
+*.tmp
+*.temp
+.tmp/
+.temp/
+tmp/
+temp/
+
+# Fichiers spécifiques à TypeScript
+*.js.map
+*.tsbuildinfo
