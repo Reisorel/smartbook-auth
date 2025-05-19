@@ -1,0 +1,102 @@
+// This file contains the styles for the Footer component.
+.footer {
+  background-color: #1F2937;
+  color: white;
+  padding: 3rem 0 1.5rem;
+
+  &__content {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    margin-bottom: 2.5rem;
+
+    @media (max-width: 1024px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 640px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0 0 1rem;
+    color: white;
+  }
+
+  &__description {
+    color: #D1D5DB;
+    line-height: 1.5;
+  }
+
+  &__subtitle {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin: 0 0 1rem;
+    color: white;
+  }
+
+  &__links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  &__link {
+    color: #D1D5DB;
+    text-decoration: none;
+    display: inline-block;
+    padding: 0.375rem 0;
+    transition: color 0.2s;
+
+    &:hover {
+      color: white;
+    }
+  }
+
+  &__address {
+    font-style: normal;
+    color: #D1D5DB;
+    line-height: 1.5;
+
+    p {
+      margin: 0.25rem 0;
+    }
+  }
+
+  &__bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @media (max-width: 640px) {
+      flex-direction: column;
+      gap: 1rem;
+      text-align: center;
+    }
+  }
+
+  &__copyright {
+    color: #9CA3AF;
+    margin: 0;
+  }
+
+  &__social {
+    display: flex;
+    gap: 1rem;
+  }
+
+  &__social-link {
+    color: #9CA3AF;
+    text-decoration: none;
+    transition: color 0.2s;
+
+    &:hover {
+      color: white;
+    }
+  }
+}

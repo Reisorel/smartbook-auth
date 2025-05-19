@@ -1,0 +1,14 @@
+.app-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; // Assure que le layout prend au moins toute la hauteur de la fenêtre
+}
+
+.main-content {
+  flex: 1 0 auto; // Permet au contenu principal de s'étendre et prend tout l'espace disponible
+  padding: 2rem 0; // Espace au-dessus et en-dessous du contenu principal
+
+  @media (max-width: 640px) {
+    padding: 1.5rem 0; // Espace légèrement réduit sur mobile
+  }
+}

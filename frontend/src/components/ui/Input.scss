@@ -1,0 +1,120 @@
+.input {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+
+  &__label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+    color: #1F2937;
+  }
+
+  &__wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  &__field {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #D1D5DB;
+    border-radius: 0.375rem;
+    outline: none;
+    font-size: 1rem;
+    color: #1F2937;
+    transition: all 0.2s ease;
+
+    &:hover {
+      border-color: #9CA3AF;
+    }
+
+    &:focus {
+      border-color: #4A55A2;
+      box-shadow: 0 0 0 2px rgba(74, 85, 162, 0.2);
+    }
+
+    &::placeholder {
+      color: #9CA3AF;
+    }
+  }
+
+  &__icon {
+    position: absolute;
+    left: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #6B7280;
+
+    & + .input__field {
+      padding-left: 2.5rem;
+    }
+  }
+
+  &__message {
+    font-size: 0.75rem;
+    margin-top: 0.25rem;
+    color: #6B7280;
+
+    &--error {
+      color: #EF4444;
+    }
+  }
+
+  // Variants
+  &--error {
+    .input__field {
+      border-color: #EF4444;
+
+      &:focus {
+        box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.2);
+      }
+    }
+  }
+
+  &--focused {
+    .input__label {
+      color: #4A55A2;
+    }
+  }
+
+  // Sizes
+  &--small {
+    .input__field {
+      padding: 0.375rem 0.625rem;
+      font-size: 0.875rem;
+    }
+
+    .input__label {
+      font-size: 0.75rem;
+    }
+  }
+
+  &--medium {
+    // Default styles already applied
+  }
+
+  &--large {
+    .input__field {
+      padding: 0.625rem 0.875rem;
+      font-size: 1.125rem;
+    }
+
+    .input__label {
+      font-size: 1rem;
+    }
+  }
+
+  &--full-width {
+    width: 100%;
+  }
+
+  // Disabled state
+  .input__field:disabled {
+    background-color: #F3F4F6;
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+}

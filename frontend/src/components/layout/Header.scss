@@ -1,0 +1,109 @@
+// This file contains the styles for the Header component.
+.header {
+  background-color: #1F2937; // Même couleur de fond que le footer
+  color: white; // Même couleur de texte que le footer
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  &__content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__logo {
+    a {
+      text-decoration: none;
+      color: white; // Blanc comme dans le footer
+
+      h1 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin: 0;
+      }
+    }
+  }
+
+  &__nav {
+    flex: 1;
+    margin: 0 2rem;
+
+    @media (max-width: 768px) {
+      position: absolute;
+      top: 70px;
+      left: 0;
+      right: 0;
+      background-color: #1F2937; // Même couleur que le header
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+      padding: 1rem;
+      display: none;
+
+      &--active {
+        display: block;
+      }
+    }
+  }
+
+  &__nav-list {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+    }
+  }
+
+  &__nav-item {
+    margin: 0 0.75rem;
+
+    @media (max-width: 768px) {
+      margin: 0.5rem 0;
+    }
+  }
+
+  &__nav-link {
+    color: #D1D5DB; // Couleur utilisée pour les liens dans le footer
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+
+    &:hover {
+      color: white; // Même effet hover que dans le footer
+    }
+
+    &.active {
+      color: white;
+      font-weight: 600;
+    }
+  }
+
+  &__auth {
+    display: flex;
+    align-items: center;
+
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
+
+  &__auth-buttons {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  &__username {
+    font-weight: 500;
+    color: #D1D5DB; // Même couleur que pour les textes secondaires du footer
+  }
+}

@@ -1,0 +1,96 @@
+.header {
+  background-color: #1F2937;
+  color: white;
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+.header .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+.header__content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.header__logo a {
+  text-decoration: none;
+  color: white;
+}
+.header__logo a h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+}
+.header__nav {
+  flex: 1;
+  margin: 0 2rem;
+}
+@media (max-width: 768px) {
+  .header__nav {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    right: 0;
+    background-color: #1F2937;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    padding: 1rem;
+    display: none;
+  }
+  .header__nav--active {
+    display: block;
+  }
+}
+.header__nav-list {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+@media (max-width: 768px) {
+  .header__nav-list {
+    flex-direction: column;
+  }
+}
+.header__nav-item {
+  margin: 0 0.75rem;
+}
+@media (max-width: 768px) {
+  .header__nav-item {
+    margin: 0.5rem 0;
+  }
+}
+.header__nav-link {
+  color: #D1D5DB;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+.header__nav-link:hover {
+  color: white;
+}
+.header__nav-link.active {
+  color: white;
+  font-weight: 600;
+}
+.header__auth {
+  display: flex;
+  align-items: center;
+}
+@media (max-width: 768px) {
+  .header__auth {
+    display: none;
+  }
+}
+.header__auth-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+.header__username {
+  font-weight: 500;
+  color: #D1D5DB;
+}/*# sourceMappingURL=Header.css.map */

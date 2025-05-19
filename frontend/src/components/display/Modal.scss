@@ -1,0 +1,88 @@
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+  padding: 1rem;
+
+  &--active {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.modal {
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  transform: translateY(20px);
+  opacity: 0;
+  transition: transform 0.3s, opacity 0.3s;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+
+  &--active {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  // Tailles
+  &--small {
+    max-width: 400px;
+  }
+
+  &--medium {
+    max-width: 600px;
+  }
+
+  &--large {
+    max-width: 800px;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid #E5E7EB;
+  }
+
+  &__title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0;
+    color: #1F2937;
+  }
+
+  &__close-btn {
+    font-size: 1.25rem;
+    padding: 0.25rem;
+    margin: -0.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      background-color: #F3F4F6;
+    }
+  }
+
+  &__content {
+    padding: 1.5rem;
+    overflow-y: auto;
+    flex-grow: 1;
+  }
+}
