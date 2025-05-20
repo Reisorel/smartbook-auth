@@ -1,6 +1,6 @@
 // Type aligné avec le modèle backend (book.model.ts)
 export interface Book {
-  id: string;                // Correspond au _id de MongoDB converti en string
+  _id: string;               // Utiliser _id directement comme dans MongoDB
   title: string;             // Identique au backend
   author: string;            // Identique au backend
   price: number;             // Identique au backend

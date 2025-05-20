@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
-import { bookApi, type Book } from '../services/api/BookApi';
+import { bookApi } from '../services/api/BookApi';
+import type { Book } from '../types/TypeIndex'; // Utiliser votre interface Book avec _id
 
 export function useBook() {
   const [books, setBooks] = useState<Book[]>([]);
@@ -66,9 +67,9 @@ export function useBook() {
 
     try {
       const updatedBook = await bookApi.updateBook(bookId, bookData);
-      setBooks(prevBooks => prevBooks.map(book => book.id === bookId ? updatedBook : book));
+      setBooks(prevBooks => prevBooks.map(book => book._id === bookId ? updatedBook : book));
 
-      if (selectedBook?.id === bookId) {
+      if (selectedBook?._id === bookId) {
         setSelectedBook(updatedBook);
       }
 
@@ -89,9 +90,9 @@ export function useBook() {
 
     try {
       await bookApi.deleteBook(bookId);
-      setBooks(prevBooks => prevBooks.filter(book => book.id !== bookId));
+      setBooks(prevBooks => prevBooks.filter(book => book._id !== bookId));
 
-      if (selectedBook?.id === bookId) {
+      if (selectedBook?._id === bookId) {
         setSelectedBook(null);
       }
     } catch (err) {

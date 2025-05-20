@@ -1,5 +1,6 @@
 // BooksPage.tsx
-import { FC, useState } from 'react';
+import { useState } from 'react';
+import type { FC } from 'react';
 import { BookList } from '../features/books/BookList';
 import Toast from '../components/display/Toast';
 import { useCart } from '../hooks/useCart';

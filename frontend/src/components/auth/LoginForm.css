@@ -1,0 +1,22 @@
+.auth-form__field {
+  margin-bottom: 1.25rem;
+}
+.auth-form__error {
+  background-color: #fee2e2;
+  color: #b91c1c;
+  padding: 0.75rem;
+  border-radius: 4px;
+  margin-bottom: 1.25rem;
+  font-size: 0.875rem;
+}
+.auth-form__actions {
+  margin-top: 1.5rem;
+}
+.auth-form__footer {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+.auth-form__footer p {
+  color: #4b5563;
+  margin-bottom: 0.5rem;
+}/*# sourceMappingURL=LoginForm.css.map */

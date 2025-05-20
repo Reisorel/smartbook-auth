@@ -1,7 +1,13 @@
 import { Link } from 'react-router-dom';
 import './Header.scss';
+import { useAuth } from '../../context/AuthContext';
+import { useModal } from '../../context/ModalContext';
+import { Button } from '../IndexComponents';
 
 const Header = () => {
+  const { user, logout } = useAuth();
+  const { openAuthModal } = useModal();
+
   return (
     <header className="header">
       <div className="container">
@@ -21,9 +27,27 @@ const Header = () => {
           </nav>
 
           <div className="header__auth">
-            <div className="header__auth-buttons">
-              <span className="header__username">Bienvenue sur notre librairie</span>
-            </div>
+            {user ? (
+              <div className="header__user">
+                <span>Bonjour, {user.name}</span>
+                <Button onClick={logout} variant="text">Déconnexion</Button>
+              </div>
+            ) : (
+              <div className="header__auth-actions">
+                <Button
+                  onClick={() => openAuthModal('login')}
+                  variant="text"
+                >
+                  Connexion
+                </Button>
+                <Button
+                  onClick={() => openAuthModal('register')}
+                  variant="primary"
+                >
+                  S'inscrire
+                </Button>
+              </div>
+            )}
           </div>
         </div>
       </div>

@@ -10,7 +10,7 @@ const BookCard: FC<{ book: Book; onAddToCart?: (bookId: string) => void }> = ({
 }) => {
   const handleAddToCart = () => {
     if (onAddToCart && book.stock > 0) {
-      onAddToCart(book.id);
+      onAddToCart(book._id); // Utiliser _id au lieu de id
     }
   };
 

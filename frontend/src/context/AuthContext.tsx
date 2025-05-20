@@ -1,4 +1,5 @@
-import { createContext, useContext, ReactNode } from 'react';
+import { createContext, useContext } from 'react';
+import type { ReactNode } from 'react';
 import { useUser } from '../hooks/useUser';
 
 // Le contexte exposera toutes les valeurs et méthodes retournées par useUser

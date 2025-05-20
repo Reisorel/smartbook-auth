@@ -1,0 +1,20 @@
+// src/components/auth/AuthModal.scss
+.auth-modal {
+  &__error {
+    background-color: #fee2e2;
+    color: #b91c1c;
+    padding: 0.75rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    font-size: 0.875rem;
+  }
+
+  &__success {
+    background-color: #d1fae5;
+    color: #047857;
+    padding: 0.75rem;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    font-size: 0.875rem;
+  }
+}

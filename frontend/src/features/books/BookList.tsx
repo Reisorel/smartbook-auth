@@ -2,7 +2,7 @@ import { type FC } from 'react';
 import BookCard from '../../components/display/BookCard';
 import Loader from '../../components/ui/Loader';
 import { useBook } from '../../hooks/useBook';
-import { type Book as DisplayBook } from '../../types/TypeIndex'; // Modifié pour utiliser TypeIndex
+import type { Book } from '../../types/Book'; // Correct avec verbatimModuleSyntax
 import './BookList.scss';
 
 interface BookListProps {
@@ -26,7 +26,7 @@ export const BookList: FC<BookListProps> = ({ onAddToCart }) => {
   }
 
   // Fonction pour convertir le format de Book
-  const formatBook = (apiBook: any): DisplayBook => ({
+  const formatBook = (apiBook: any): Book => ({
     ...apiBook,
     // Convertir Date en string si nécessaire
     createdAt: typeof apiBook.createdAt === 'object' ? apiBook.createdAt.toISOString() : apiBook.createdAt,
