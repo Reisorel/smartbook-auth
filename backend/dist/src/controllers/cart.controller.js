@@ -8,15 +8,21 @@ const error_middleware_1 = require("../middlewares/error.middleware");
  */
 const getCart = async (req, res, next) => {
     try {
-        if (!req.user) {
-            throw new error_middleware_1.ApiError(401, 'Utilisateur non authentifié');
-        }
-        let cart = await index_model_1.Cart.findOne({ userId: req.user.userId }).populate('items.bookId');
-        // Si l'utilisateur n'a pas encore de panier, en créer un
+        const userId = req.user?.userId;
+        // Récupérer le panier et peupler les références de livres
+        const cart = await index_model_1.Cart.findOne({ userId })
+            .populate('items.bookId')
+            .exec();
+        // Si pas de panier, renvoyer une réponse appropriée
         if (!cart) {
-            cart = await index_model_1.Cart.create({ userId: req.user.userId, items: [] });
+            res.status(404).json({
+                message: "Aucun panier trouvé pour cet utilisateur",
+                cart: null
+            });
+            return;
         }
-        res.json(cart);
+        // Renvoyer le panier existant
+        res.status(200).json(cart);
     }
     catch (error) {
         next(error);
@@ -71,9 +77,11 @@ const addItemToCart = async (req, res, next) => {
         }
         // Sauvegarder les modifications
         await cart.save();
+        // Récupérer le panier avec les détails des livres
+        const populatedCart = await index_model_1.Cart.findById(cart._id).populate('items.bookId');
         res.json({
             message: 'Article ajouté au panier',
-            cart
+            cart: populatedCart
         });
     }
     catch (error) {

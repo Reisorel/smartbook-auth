@@ -6,20 +6,26 @@ import Logger from '../utils/logger.utils';
 /**
  * Récupère le panier de l'utilisateur connecté
  */
-export const getCart = async (req: Request, res: Response, next: NextFunction) => {
+export const getCart = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
-    if (!req.user) {
-      throw new ApiError(401, 'Utilisateur non authentifié');
-    }
+    const userId = req.user?.userId;
 
-    let cart = await Cart.findOne({ userId: req.user.userId }).populate('items.bookId');
+    // Récupérer le panier et peupler les références de livres
+    const cart = await Cart.findOne({ userId })
+      .populate('items.bookId')
+      .exec();
 
-    // Si l'utilisateur n'a pas encore de panier, en créer un
+    // Si pas de panier, renvoyer une réponse appropriée
     if (!cart) {
-      cart = await Cart.create({ userId: req.user.userId, items: [] });
+      res.status(404).json({
+        message: "Aucun panier trouvé pour cet utilisateur",
+        cart: null
+      });
+      return;
     }
 
-    res.json(cart);
+    // Renvoyer le panier existant
+    res.status(200).json(cart);
   } catch (error) {
     next(error);
   }
@@ -82,9 +88,12 @@ export const addItemToCart = async (req: Request, res: Response, next: NextFunct
     // Sauvegarder les modifications
     await cart.save();
 
+    // Récupérer le panier avec les détails des livres
+    const populatedCart = await Cart.findById(cart._id).populate('items.bookId');
+
     res.json({
       message: 'Article ajouté au panier',
-      cart
+      cart: populatedCart
     });
   } catch (error) {
     next(error);

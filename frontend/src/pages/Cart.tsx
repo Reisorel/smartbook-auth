@@ -1,7 +1,7 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
 import { useUser } from '../hooks/useUser';
-import { CartItemList } from '../features/carts/CartItemList';
+import CartList from '../features/carts/CartList';
 import './Cart.scss';
 
 const CartPage: React.FC = () => {
@@ -15,7 +15,7 @@ const CartPage: React.FC = () => {
   return (
     <main className="cart-page">
       <div className="cart-page__container">
-        <CartItemList />
+        <CartList />
       </div>
     </main>
   );
