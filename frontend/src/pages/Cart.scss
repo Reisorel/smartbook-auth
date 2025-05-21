@@ -1,0 +1,25 @@
+.cart-page {
+  padding: 2rem 1rem;
+
+  &__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    min-height: 60vh; // Pour éviter que la page paraisse trop petite si peu d'articles
+  }
+
+  // Responsive adjustments
+  @media (max-width: 768px) {
+    padding: 1rem 0.75rem;
+  }
+}
+
+// Style d'impression pour les reçus
+@media print {
+  .cart-page {
+    padding: 0;
+
+    &__container {
+      max-width: 100%;
+    }
+  }
+}

@@ -1,0 +1,22 @@
+.cart-page {
+  padding: 2rem 1rem;
+}
+.cart-page__container {
+  max-width: 1200px;
+  margin: 0 auto;
+  min-height: 60vh;
+}
+@media (max-width: 768px) {
+  .cart-page {
+    padding: 1rem 0.75rem;
+  }
+}
+
+@media print {
+  .cart-page {
+    padding: 0;
+  }
+  .cart-page__container {
+    max-width: 100%;
+  }
+}/*# sourceMappingURL=Cart.css.map */
