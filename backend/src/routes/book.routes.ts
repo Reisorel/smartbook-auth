@@ -13,4 +13,11 @@ router.post('/', authenticate, isAdmin, bookController.createBook);
 router.put('/:id', authenticate, isAdmin, bookController.updateBook);
 router.delete('/:id', authenticate, isAdmin, bookController.deleteBook);
 
+//route pour consulter tous les clients
+// route pour consulter tous le panier d'un client
+
+//Routes protégées (client seulement)
+
+// route pour consulter le panier d'un client 
+
 export default router;

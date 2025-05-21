@@ -11,12 +11,16 @@ const logger_utils_1 = __importDefault(require("../utils/logger.utils"));
  */
 const authenticate = (req, res, next) => {
     try {
+        // 1. Extraire l'en-tête d'autorisation
         const authHeader = req.headers.authorization;
+        // 2. Vérifier si l'en-tête est présent et commence par "Bearer "
         if (!authHeader || !authHeader.startsWith('Bearer ')) {
             res.status(401).json({ message: 'Authentification requise' });
             return;
         }
+        // 3. Extraire le token (supprime "Bearer" au début)
         const token = authHeader.split(' ')[1];
+        // 4. Vérifier et décoder le token
         const decoded = (0, jwt_utils_1.verifyToken)(token);
         req.user = decoded;
         next();

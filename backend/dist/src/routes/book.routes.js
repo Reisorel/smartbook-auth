@@ -44,4 +44,8 @@ router.get('/:id', bookController.getBookById);
 router.post('/', auth_middleware_1.authenticate, auth_middleware_1.isAdmin, bookController.createBook);
 router.put('/:id', auth_middleware_1.authenticate, auth_middleware_1.isAdmin, bookController.updateBook);
 router.delete('/:id', auth_middleware_1.authenticate, auth_middleware_1.isAdmin, bookController.deleteBook);
+//route pour consulter tous les clients
+// route pour consulter tous le panier d'un client
+//Routes protégées (client seulement)
+// route pour consulter le panier d'un client 
 exports.default = router;
