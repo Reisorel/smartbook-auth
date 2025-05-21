@@ -48,69 +48,15 @@
 .auth-form__footer button {
   font-weight: 500;
   color: #3b82f6;
-  background: transparent;
-  border: none;
-  padding: 0.5rem 1rem;
-  cursor: pointer;
 }
 .auth-form__footer button:hover {
   text-decoration: underline;
 }
-.auth-form__validation {
-  font-size: 0.75rem;
-  margin-top: 0.25rem;
+.auth-form .input-error {
+  border-color: #b91c1c;
 }
-.auth-form__validation--error {
-  color: #b91c1c;
-}
-.auth-form__validation--success {
-  color: #047857;
-}
-.auth-form__remember {
-  display: flex;
-  align-items: center;
-  margin-top: 0.75rem;
-}
-.auth-form__remember input[type=checkbox] {
-  margin-right: 0.5rem;
-}
-.auth-form__remember label {
-  font-size: 0.875rem;
-  color: #4b5563;
-  cursor: pointer;
-}
-.auth-form__forgot-password {
-  margin-top: 0.5rem;
-  text-align: right;
-}
-.auth-form__forgot-password a {
-  font-size: 0.875rem;
-  color: #3b82f6;
-  text-decoration: none;
-}
-.auth-form__forgot-password a:hover {
-  text-decoration: underline;
-}
-
-.auth-form-enter {
-  opacity: 0;
-  transform: translateY(10px);
-}
-
-.auth-form-enter-active {
-  opacity: 1;
-  transform: translateY(0);
-  transition: opacity 300ms, transform 300ms;
-}
-
-.auth-form-exit {
-  opacity: 1;
-}
-
-.auth-form-exit-active {
-  opacity: 0;
-  transform: translateY(-10px);
-  transition: opacity 300ms, transform 300ms;
+.auth-form .input-error:focus {
+  box-shadow: 0 0 0 2px rgba(185, 28, 28, 0.2);
 }
 
 @media (max-width: 640px) {
@@ -119,6 +65,5 @@
   }
   .auth-form__footer {
     margin-top: 1.25rem;
-    padding-top: 1rem;
   }
-}/*# sourceMappingURL=LoginForm.css.map */
+}/*# sourceMappingURL=RegisterForm.css.map */

@@ -1,22 +1,11 @@
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
+import type { Book } from '../../types/Book';
 
-// Types
-export interface Book {
-  id: string;
-  title: string;
-  author: string;
-  price: number;
-  stock: number;
-  coverUrl: string;
-  description: string;
-  createdAt: Date;
-  updatedAt: Date;
-}
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
 
 // Fonctions d'API pour les livres
 export const bookApi = {
   // LECTURE PUBLIQUE
-  async getAllBooks() {
+  async getAllBooks(): Promise<Book[]> {
     const response = await fetch(`${API_URL}/books`);
 
     if (!response.ok) {
@@ -27,7 +16,7 @@ export const bookApi = {
     return response.json();
   },
 
-  async getBookById(bookId: string) {
+  async getBookById(bookId: string): Promise<Book> {
     const response = await fetch(`${API_URL}/books/${bookId}`);
 
     if (!response.ok) {
@@ -39,7 +28,7 @@ export const bookApi = {
   },
 
   // ADMIN - CREATE
-  async createBook(bookData: { title: string, author: string, price: number, stock: number, coverUrl?: string, description?: string }) {
+  async createBook(bookData: Partial<Book>): Promise<Book> {
     const token = localStorage.getItem('auth_token');
     if (!token) throw new Error('Non authentifié');
 
@@ -61,7 +50,7 @@ export const bookApi = {
   },
 
   // ADMIN - UPDATE
-  async updateBook(bookId: string, bookData: { title?: string, author?: string, price?: number, stock?: number, coverUrl?: string, description?: string }) {
+  async updateBook(bookId: string, bookData: Partial<Book>): Promise<Book> {
     const token = localStorage.getItem('auth_token');
     if (!token) throw new Error('Non authentifié');
 
@@ -83,7 +72,7 @@ export const bookApi = {
   },
 
   // ADMIN - DELETE
-  async deleteBook(bookId: string) {
+  async deleteBook(bookId: string): Promise<Book> {
     const token = localStorage.getItem('auth_token');
     if (!token) throw new Error('Non authentifié');
 
