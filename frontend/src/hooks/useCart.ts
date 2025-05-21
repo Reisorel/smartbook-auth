@@ -89,8 +89,8 @@ export function useCart() {
     setError(null);
 
     try {
-      await cartApi.clearCart();
-      setCart(null);
+      const emptyCart = await cartApi.clearCart();
+      setCart(emptyCart);
     } catch (err) {
       const message = err instanceof Error ? err.message : "Erreur lors du vidage du panier";
       setError(message);
@@ -110,12 +110,11 @@ export function useCart() {
   const getTotalPrice = useCallback(() => {
     if (!cart?.items || cart.items.length === 0) return 0;
 
-    // Note: cette fonction suppose que chaque item a une propriété book avec un prix
-    // Si ce n'est pas le cas, vous devrez adapter cette logique
     return cart.items.reduce((total, item) => {
-      // Ici, vous devriez avoir des informations sur le livre et son prix
-      // Cette partie dépend de la structure exacte de votre API
-      const bookPrice = item.book?.price || 0;
+      // Gestion des deux cas possibles : bookId comme objet ou comme book
+      const bookDetails = typeof item.bookId === 'object' ? item.bookId : item.book;
+      const bookPrice = bookDetails?.price || 0;
+
       return total + (bookPrice * item.quantity);
     }, 0);
   }, [cart]);
