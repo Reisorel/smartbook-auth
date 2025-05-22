@@ -1,11 +1,10 @@
 import type { Book } from './Book';
 
 // Typages pour le panier d'achats
-
 export interface CartItem {
-  bookId: string;
+  bookId: Book;  // Peut être soit un ID (string), soit un objet Book complet
   quantity: number;
-  book?: Book;  // Utiliser le type Book complet plutôt qu'une version partielle
+  book?: Book;  // Conserver pour rétrocompatibilité
 }
 
 export interface Cart {

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useCart } from '../../hooks/useCart';
 import Loader from '../../components/ui/Loader';
 import './CartList.scss';
+import type { Cart, CartItem } from '../../types/Cart'; // Importer les types Cart et CartItem
+import type { Book } from '../../types/Book'; // Ajouter cette ligne pour importer le type Book
 
 export const CartList: React.FC = () => {
   const {
@@ -19,18 +21,19 @@ export const CartList: React.FC = () => {
   // État local pour gérer les quantités côté client
   const [localQuantities, setLocalQuantities] = useState<Record<string, number>>({});
   // État local pour maintenir une copie du panier pendant les opérations
-  const [localCart, setLocalCart] = useState(cart);
+  const [localCart, setLocalCart] = useState<Cart | null>(cart);
 
   // Initialiser les quantités locales à partir du panier
   useEffect(() => {
     if (cart && cart.items) {
       const quantities: Record<string, number> = {};
       cart.items.forEach(item => {
-        const id = typeof item.bookId === 'object' ? item.bookId._id : item.bookId;
-        quantities[id] = item.quantity;
+        // Assertion de type pour dire à TypeScript que c'est toujours un objet Book
+        const bookObject = item.bookId as Book;
+        quantities[bookObject._id] = item.quantity;
       });
       setLocalQuantities(quantities);
-      setLocalCart(cart); // Mettre à jour le panier local
+      setLocalCart(cart);
     }
   }, [cart]);
 
@@ -40,7 +43,7 @@ export const CartList: React.FC = () => {
 
   // Utiliser le panier local ou le panier du hook, selon lequel est disponible
   const currentCart = localCart || cart;
-  if (!currentCart || !currentCart.items || currentCart.items.length === 0) {
+  if (!currentCart || !currentCart.items || !currentCart.items.length) {
     return <div className="cart-empty">Votre panier est vide</div>;
   }
 
@@ -71,8 +74,8 @@ export const CartList: React.FC = () => {
         return {
           ...prevCart,
           items: prevCart.items.map(item => {
-            const itemId = typeof item.bookId === 'object' ? item.bookId._id : item.bookId;
-            if (itemId === bookId) {
+            // Maintenant bookId est toujours un objet Book avec une propriété _id
+            if (item.bookId._id === bookId) {
               return { ...item, quantity: newQuantity };
             }
             return item;
@@ -88,7 +91,7 @@ export const CartList: React.FC = () => {
 
     try {
       setProcessingItems(prev => ({ ...prev, [bookId]: true }));
-      const updatedCart = await updateCartItem(bookId, quantity);
+      await updateCartItem(bookId, quantity); // N'assignez pas le résultat si vous ne l'utilisez pas
       // Pas besoin de mettre à jour le panier local ici car l'effet ci-dessus le fera
     } catch (error) {
       console.error("Erreur lors de la mise à jour du panier:", error);
@@ -106,13 +109,18 @@ export const CartList: React.FC = () => {
       if (window.confirm("Êtes-vous sûr de vouloir supprimer cet article du panier ?")) {
         // Mettre à jour le panier local immédiatement pour éviter le flash "panier vide"
         if (localCart) {
-          setLocalCart(prevCart => ({
-            ...prevCart,
-            items: prevCart.items.filter(item => {
-              const itemId = typeof item.bookId === 'object' ? item.bookId._id : item.bookId;
-              return itemId !== bookId;
-            })
-          }));
+          setLocalCart(prevCart => {
+            if (!prevCart) return prevCart;
+
+            return {
+              ...prevCart,
+              items: prevCart.items.filter(item => {
+                // Utiliser l'assertion de type pour accéder à _id
+                const itemBookId = (item.bookId as Book)._id;
+                return itemBookId !== bookId;
+              })
+            };
+          });
         }
 
         await removeFromCart(bookId);
