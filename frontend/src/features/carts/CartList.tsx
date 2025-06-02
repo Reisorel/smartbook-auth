@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useCart } from '../../hooks/useCart';
 import Loader from '../../components/ui/Loader';
 import './CartList.scss';
-import type { Cart, CartItem } from '../../types/Cart'; // Importer les types Cart et CartItem
+import type { Cart } from '../../types/Cart'; // Importer les types Cart et CartItem
 import type { Book } from '../../types/Book'; // Ajouter cette ligne pour importer le type Book
 
 export const CartList: React.FC = () => {
